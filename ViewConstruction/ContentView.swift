@@ -25,12 +25,21 @@ struct ContentView: View {
             } else {
                 Text("You've not yet tapped")
             }
-        }
+        }.debug()
     }
 }
+
+extension View {
+    func debug() -> Self {
+        print(Mirror(reflecting: self).subjectType)
+        return self
+    }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
