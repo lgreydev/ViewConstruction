@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var counter = 0
+    
     var body: some View {
         VStack {
             Button {
@@ -33,6 +34,7 @@ struct ContentView: View {
             case false: Text("You've not yet tapped")
             }
             
+            /*
             HStack {
                 switch counter > 0 {
                 case true: Rectangle()
@@ -42,8 +44,17 @@ struct ContentView: View {
             .padding()
             .frame(width: 100, height: 100, alignment: .center)
             .foregroundColor(Color.gray)
+             */
             
-        }.debug()
+        }
+        .debug()
+//        .frame(width: 200, height: 200)
+        .border(.gray)
+        .frame(width: 200, height: 200)
+        .border(.red)
+        
+       
+        
     }
 }
 
