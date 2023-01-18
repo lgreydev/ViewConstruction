@@ -12,49 +12,13 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Button {
-                counter += 1
-            } label: {
-                Text("Tap me!")
-                    .padding()
-                    .background(Color(.tertiarySystemFill))
-                    .cornerRadius(5)
-            }
+            Button("Tap me!") { counter += 1 }
             
-            /*
             if counter > 0 {
                 Text("You've tapped \(counter) times")
-            } else {
-                Text("You've not yet tapped")
             }
-            */
-            
-            switch counter > 0 {
-            case true: Text("You've tapped \(counter) times")
-            case false: Text("You've not yet tapped")
-            }
-            
-            /*
-            HStack {
-                switch counter > 0 {
-                case true: Rectangle()
-                case false: Circle()
-                }
-            }
-            .padding()
-            .frame(width: 100, height: 100, alignment: .center)
-            .foregroundColor(Color.gray)
-             */
-            
         }
         .debug()
-//        .frame(width: 200, height: 200)
-        .border(.gray)
-        .frame(width: 200, height: 200)
-        .border(.red)
-        
-       
-        
     }
 }
 
