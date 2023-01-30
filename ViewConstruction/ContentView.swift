@@ -14,14 +14,28 @@ struct ContentView: View {
         VStack {
             Button("Tap me!") { counter += 1 }
             
-            if counter > 0 {
-                Text("You've tapped \(counter) times")
-            }
+            LabelView(number: counter)
         }
         .debug()
     }
 }
 
+
+struct LabelView: View {
+    
+    let number: Int
+    
+    var body: some View {
+        Group {
+            if number > 0 {
+                Text("You've tapped \(number) times")
+            }
+        }
+    }
+}
+
+
+// MARK: Debug helper
 extension View {
     func debug() -> Self {
         let arr = [10, 20]
