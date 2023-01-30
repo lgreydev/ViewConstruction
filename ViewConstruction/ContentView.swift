@@ -12,9 +12,9 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Button("Tap me!") { counter += 1 }
-            
-            LabelView(number: counter)
+//            Button("Tap me!") { counter += 1 }
+//            LabelView(number: counter)
+            LabelView()
         }
         .debug()
     }
@@ -23,12 +23,16 @@ struct ContentView: View {
 
 struct LabelView: View {
     
-    let number: Int
+    @State var counter = 0
     
     var body: some View {
-        Group {
-            if number > 0 {
-                Text("You've tapped \(number) times")
+        VStack {
+            Button("Tap me!") {
+                self.counter += 1
+            }
+
+            if counter > 0 {
+                Text("You've tapped \(counter) times")
             }
         }
     }
