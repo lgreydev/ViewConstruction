@@ -14,7 +14,7 @@ struct ContentView: View {
         VStack {
 //            Button("Tap me!") { counter += 1 }
 //            LabelView(number: counter)
-            LabelView()
+            LabelView(number: $counter)
         }
         .debug()
     }
@@ -23,16 +23,16 @@ struct ContentView: View {
 
 struct LabelView: View {
     
-    @State var counter = 0
+    @Binding var number: Int
     
     var body: some View {
         VStack {
             Button("Tap me!") {
-                self.counter += 1
+                self.number += 1
             }
 
-            if counter > 0 {
-                Text("You've tapped \(counter) times")
+            if number > 0 {
+                Text("You've tapped \(number) times")
             }
         }
     }
