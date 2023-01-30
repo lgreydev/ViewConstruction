@@ -12,16 +12,34 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Button("Tap me!") { counter += 1 }
-            
-            if counter > 0 {
-                Text("You've tapped \(counter) times")
-            }
+//            Button("Tap me!") { counter += 1 }
+//            LabelView(number: counter)
+            LabelView(number: $counter)
         }
         .debug()
     }
 }
 
+
+struct LabelView: View {
+    
+    @Binding var number: Int
+    
+    var body: some View {
+        VStack {
+            Button("Tap me!") {
+                self.number += 1
+            }
+
+            if number > 0 {
+                Text("You've tapped \(number) times")
+            }
+        }
+    }
+}
+
+
+// MARK: Debug helper
 extension View {
     func debug() -> Self {
         let arr = [10, 20]
