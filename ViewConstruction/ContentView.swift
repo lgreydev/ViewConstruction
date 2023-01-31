@@ -12,9 +12,10 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-//            Button("Tap me!") { counter += 1 }
-//            LabelView(number: counter)
-            LabelView(number: $counter)
+            ForEach(1...3, id: \.self) { x in
+                Text("\(x)")
+                LabelView(number: $counter)
+            }
         }
         .debug()
     }
@@ -22,10 +23,9 @@ struct ContentView: View {
 
 
 struct LabelView: View {
-    
     @Binding var number: Int
     
-    var body: some View {
+    @ViewBuilder var helper: some View {
         VStack {
             Button("Tap me!") {
                 self.number += 1
@@ -35,6 +35,7 @@ struct LabelView: View {
                 Text("You've tapped \(number) times")
             }
         }
+        .padding(.bottom)
     }
 }
 
