@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var counter = 0
+    @State private var counter = 0
     
     var body: some View {
         VStack {
-            ForEach(1...3, id: \.self) { x in
-                Text("\(x)")
-                LabelView(number: $counter)
-            }
+            
+            LabelView(number: $counter)
+            
+            
+            let _ = print("counter \(counter)")
+            
+//            if counter > 0 {
+//                let _ = print("counter \(counter)")
+////                Text("new \(counter)")
+//            }
         }
-        .debug()
+//        .debug()
     }
 }
 
@@ -25,17 +31,14 @@ struct ContentView: View {
 struct LabelView: View {
     @Binding var number: Int
     
-    @ViewBuilder var helper: some View {
+    var body: some View {
         VStack {
-            Button("Tap me!") {
-                self.number += 1
-            }
-
+            Button("Tap me!") { number += 1}
+            
             if number > 0 {
                 Text("You've tapped \(number) times")
             }
         }
-        .padding(.bottom)
     }
 }
 
