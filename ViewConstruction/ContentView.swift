@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var counter = 0
+    @State private var volume: Double = 0.1
     
     var body: some View {
         VStack {
+            Knob(value: volume)
+                .frame(width: 100, height: 100)
             
+            Slider(value: $volume, in: 0...1)
+                .padding(.horizontal)
         }
 
     }
@@ -31,6 +35,17 @@ struct KnobShape: Shape {
             p.addEllipse(in: circleRect)
             p.addRect(CGRect(x: rect.midX - pointerWidth/2, y: 0, width: pointerWidth, height: pointerHeight + 2))
         }
+    }
+}
+
+
+struct Knob: View {
+    var value: Double // should be between 0 and 1
+    
+    var body: some View {
+        KnobShape()
+            .fill(Color.primary)
+            .rotationEffect(Angle(degrees: value * 330))
     }
 }
 
