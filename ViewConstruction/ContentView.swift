@@ -12,8 +12,8 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Knob(value: volume)
-                .frame(width: 100, height: 100)
+            Knob(value: $volume)
+                .frame(width: 50, height: 50)
             
             Slider(value: $volume, in: 0...1)
                 .padding(.horizontal)
@@ -38,33 +38,21 @@ struct KnobShape: Shape {
     }
 }
 
-
 struct Knob: View {
-    var value: Double // should be between 0 and 1
+    @Binding var value: Double // should be between 0 and 1
+    @State var color: Color = .red
     
+    let colors: [Color] = [.gray, .red, .orange, .yellow, .green, .blue, .purple, .pink]
+
     var body: some View {
         KnobShape()
-            .fill(Color.primary)
+            .fill(color)
             .rotationEffect(Angle(degrees: value * 330))
-    }
-}
-
-
-/*
-struct LabelView: View {
-    @Binding var number: Int
-    
-    var body: some View {
-        VStack {
-            Button("Tap me!") { number += 1}
-            
-            if number > 0 {
-                Text("You've tapped \(number) times")
+            .onTapGesture {
+                self.color = colors.randomElement()!
             }
-        }
     }
 }
-*/
 
 // MARK: Debug helper
 extension View {
