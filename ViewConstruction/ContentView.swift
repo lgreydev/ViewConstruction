@@ -12,18 +12,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Knob(value: volume) { newValue in
-                self.volume = newValue
-            }
-            .frame(width: 100, height: 100)
+            Knob(value: $volume)
+                .frame(width: 100, height: 100)
             
             Slider(value: $volume, in: (0...1))
                 .padding()
         }
     }
 }
-
-
 
 struct KnobShape: Shape {
     var pointerSize: CGFloat = 0.1 // these are relative values
@@ -41,15 +37,16 @@ func path(in rect: CGRect) -> Path {
 }
 
 struct Knob: View {
-    var value: Double // should be between 0 and 1
-    var valueChanged: (Double) -> ()
+    @Binding var value: Double // should be between 0 and 1
+    @State var color: Color = .black
     
     var body: some View {
         KnobShape()
-            .fill(Color.primary)
+            .fill(color)
             .rotationEffect(Angle(degrees: value * 330))
             .onTapGesture {
-                self.valueChanged(self.value < 0.5 ? 1 : 0)
+               value = value < 0.5 ? 1 : 0
+                color = Color.random()
             }
     }
 }
@@ -72,6 +69,12 @@ extension View {
     }
 }
 
+extension Color {
+    static func random() -> Color {
+        return Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1))
+        
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
